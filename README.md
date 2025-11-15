@@ -15,6 +15,7 @@
 3. git checkout -b [branch-name] - команда позволяет создать новую ветку с именем [branch-name] и сразу переключается на нее.
 
 ---
+
 # TMS Lesson 3 - Homework
 
 ### Проект SimpleCalculator

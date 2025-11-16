@@ -77,7 +77,7 @@
                     break;
                 case 3:
                     Console.WriteLine("Операция - Деление.\nРезультат операции:");
-                    Console.WriteLine($"\t{firstNumber} / {secondNumber} = {firstNumber / secondNumber}");
+                    Console.WriteLine($"\t{firstNumber} / {secondNumber} = {((secondNumber == 0) ? "Ошибка, деление на нуль!" : firstNumber / secondNumber)}");
                     break;
                 case 4:
                     Console.WriteLine("Операция - Умножение.\nРезультат операции:");
@@ -100,26 +100,12 @@
 
         static void CalcPercentageOf(double firstNumber, double secondNumber)
         {
-            if (secondNumber != 0)
-            {
-                Console.WriteLine($"\tЧисло {firstNumber} составляет {(firstNumber / secondNumber) * 100}% от числа {secondNumber}");
-            }
-            else
-            {
-                Console.WriteLine($"\tДеление на ноль! Число {secondNumber} нулевое. Невозможно посчитать сколько составляет число {firstNumber} от числа {secondNumber}");
-            }
+            Console.WriteLine($"\tЧисло {firstNumber} от числа {secondNumber} составляет {((secondNumber == 0) ? " - Ошибка! Деление на нуль." : (firstNumber / secondNumber) * 100 + "%")}");
         }
 
         static void CalcSquareRootOf(double number)
         {
-            if (number >= 0)
-            {
-                Console.WriteLine($"\t√{number} = {Math.Sqrt(number)}");
-            }
-            else
-            {
-                Console.WriteLine($"\tКвадратный корень из отрицательного числа {number} не вычисляется");
-            }
+            Console.WriteLine($"\t√{number} = {((number < 0) ? $"Ошибка! Квадратный корень из отрицательного числа {number} не вычисляется" : Math.Sqrt(number))}");
         }
     }
 }

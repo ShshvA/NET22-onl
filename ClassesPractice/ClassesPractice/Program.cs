@@ -79,7 +79,33 @@
 
             static void AdditionalTask1()
             {
+                RAM ram1 = new RAM("Samsung", 32);
+                ram1.GetInfo();
+                Console.WriteLine();
 
+                RAM ram2 = new RAM("Kingston", 64); 
+                ram2.GetInfo();
+                Console.WriteLine();
+
+                HDD hdd1 = new HDD("Wester Digital", 1024, HDD.HDDType.HDD_EXTERNAL);
+                hdd1.GetInfo();
+                Console.WriteLine();
+
+                HDD hdd2 = new HDD("Seagate", 2048, HDD.HDDType.HDD_INTERNAL);
+                hdd2.GetInfo();
+                Console.WriteLine();
+
+                Computer pc1 = new Computer(2142.4, "FLD", ram1, hdd1);
+                pc1.GetInfo(nameof(pc1));
+                Console.WriteLine();
+
+                Computer pc2 = new Computer(4211.54, "JDG", ram2, hdd2);
+                pc2.GetInfo(nameof(pc2));
+                Console.WriteLine();
+
+                Computer pc3 = new Computer(4242.2, "SKK");
+                pc3.GetInfo(nameof(pc3));
+                Console.WriteLine();
             }
 
             static void AdditionalTask2()

@@ -108,7 +108,30 @@ namespace OOPIntro
 
         static void Task2()
         {
+            Patient patient1 = new Patient("Алексей");
+            Patient patient2 = new Patient("Николай");
+            Patient patient3 = new Patient("Иван");
+            Patient patient4 = new Patient("Даниил");
 
+            TreatmentPlan plan1 = new TreatmentPlan(1, "Хирургическое вмешательство");
+            TreatmentPlan plan2 = new TreatmentPlan(2, "Стоматологическое лечение");
+            TreatmentPlan plan3 = new TreatmentPlan(3, "Выполнить осмотр");
+            TreatmentPlan plan4 = new TreatmentPlan(999, "Неизвестное лечение");
+
+            patient1.AddPlan(plan1);
+            patient2.AddPlan(plan2);
+            patient3.AddPlan(plan3);
+            patient4.AddPlan(plan4);
+
+            patient1.AppointDoctor();
+            patient2.AppointDoctor();
+            patient3.AppointDoctor();
+            //patient4.AppointDoctor();
+
+            patient1.PerformTreatment();
+            patient2.PerformTreatment();
+            patient3.PerformTreatment();
+            patient4.PerformTreatment();
         }
     }
 }

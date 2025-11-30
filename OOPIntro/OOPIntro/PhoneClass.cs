@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace OOPIntro
@@ -10,13 +11,13 @@ namespace OOPIntro
     {
         public PhoneClass(string number, string model, string weigth) : this(number, model)
         {
-            this._weight = weigth;
+            Weigth = weigth;
         }
 
         public PhoneClass(string number, string model)
         {
-            this._number = number;
-            this._model = model;
+            Number = number;
+            Model = model;
         }
 
         public PhoneClass()
@@ -25,7 +26,35 @@ namespace OOPIntro
         public string Number 
         {
             get => _number;
-            set => _number = string.IsNullOrEmpty(value) ? " " : value;
+            set
+            {
+                var reg1 = new Regex(@"\D");
+                string res = reg1.Replace(value, "");
+                if(res.Length != 12)
+                {
+                    this._number = "Неизветный номер";
+                }
+                else
+                {
+                    var reg2 = new Regex(@"^375(\d{2})(\d{3})(\d{2})(\d{2})$");
+                    Match match = reg2.Match(res);
+                    if (match.Success)
+                    {
+                        if (Array.Exists(new string[] { "29", "44", "25", "17" }, el => el == match.Groups[1].Value))
+                        {
+                            this._number = $"+375({match.Groups[1].Value}){match.Groups[2].Value}-{match.Groups[3].Value}-{match.Groups[4].Value}";
+                        }
+                        else
+                        {
+                            this._number = "Неизветный номер";
+                        }
+                    }
+                    else
+                    {
+                        this._number = "Неизветный номер";
+                    }
+                }
+            }
         }
 
         public string Model

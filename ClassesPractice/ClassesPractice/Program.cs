@@ -1,4 +1,7 @@
-﻿namespace ClassesPractice
+﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.Metrics;
+
+namespace ClassesPractice
 {
     internal class Program
     {
@@ -28,7 +31,6 @@
                     case '3':
                         Console.Clear();
                         AdditionalTask2();
-                        WaitFun();
                         break;
                     case 'q':
                     case 'Q':
@@ -110,7 +112,104 @@
 
             static void AdditionalTask2()
             {
+                ATMClass atm = new ATMClass(10, 10, 10);
 
+                while (true)
+                {
+                    Console.WriteLine("Выберите действие:\n" +
+                        "\t1. Внести купюры.\n" +
+                        "\t2. Снять деньги.\n" +
+                        "Нажмите 'r' чтобы вернуться к выбору задания.");
+
+                    var key = Console.ReadKey(true);
+                    switch (key.KeyChar)
+                    {
+                        case '1':
+                            Console.Clear();
+                            Console.WriteLine("Банкомат принимает купюры номиналом 20, 50, 100");
+                            atm.AddMoney(GetNaturalNumber("Введите номинал купюры: "));
+                            WaitFun();
+                            break;
+                        case '2':
+                            Console.Clear();
+                            Withdraw(atm);
+                            WaitFun();
+                            break;
+                        case 'r':
+                        case 'R':
+                            Console.Clear();
+                            return;
+                        default:
+                            Console.Clear();
+                            return;
+                    }
+                }
+            }
+
+            static int GetNaturalNumber(string msg)
+            {
+                while (true)
+                {
+                    Console.Write(msg);
+                    if(int.TryParse(Console.ReadLine(), out int banknote))
+                    {
+                        if (banknote > 0)
+                        {
+                            return banknote;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Ошибка ввода! Введите натуральное число");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ошибка ввода! Введите натуральное число");
+                    }
+                }
+            }
+
+            static void Withdraw(ATMClass atm)
+            { 
+                if (atm.AmountBancnotes20 == 0 && atm.AmountBancnotes50 == 0 && atm.AmountBancnotes100 == 0)
+                {
+                    Console.WriteLine("Банкомат не выдает деньги! Купюры закончились.");
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine($"Банкомат содержит купюры номиналом " +
+                        $"{(atm.AmountBancnotes20 > 0 ? "20" : "")}" +
+                        $"{(atm.AmountBancnotes50 > 0 ? ", 50" : "")}" +
+                        $"{(atm.AmountBancnotes100 > 0 ? ", 100" : "")}");
+                }
+
+                int amount = GetNaturalNumber("Введите сумму для списания: ");
+                if (atm.IsAvailableAmount(amount))
+                {
+                    var result = atm.WithdrawMoney(amount);
+                    if(result.isSuccess)
+                    {
+                        PrintResult(result, amount);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ошибка при выполнении операции!");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Банкомат не может выдать указанную сумму!");
+                    return;
+                }
+            }
+
+            static void PrintResult((bool isSuccess, int count20, int count50, int count100) result, int amount)
+            {
+                Console.WriteLine($"Выдана сумма {amount}\n" +
+                    $"\tКупюры номиналом 20: {(result.count20 > 0 ? $" {result.count20} шт." : "Отсутствуют.")}\n" +
+                    $"\tКупюры номиналом 50: {(result.count50 > 0 ? $" {result.count50} шт." : "Отсутствуют.")}\n" +
+                    $"\tКупюры номиналом 100: {(result.count100 > 0 ? $" {result.count100} шт." : "Отсутствуют.")}");
             }
         }
     }

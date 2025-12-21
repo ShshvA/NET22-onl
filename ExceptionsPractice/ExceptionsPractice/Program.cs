@@ -4,6 +4,21 @@
     {
         static void Main(string[] args)
         {
+            List<RegistrationClass> users = new List<RegistrationClass>();
+
+            Register(users);
+            Register(users);
+
+            Console.WriteLine("Данные пользователей:");
+            foreach (var user in users)
+            {
+                Console.WriteLine($"Пользователь {user.Id}:\n" +
+                    $"{user.GetData()}\n");
+            }
+        }
+
+        static void Register(List<RegistrationClass> users)
+        {
             while (true)
             {
                 Console.Write("Ведите логин: ");
@@ -15,9 +30,11 @@
 
                 try
                 {
-                    if (RegistrationClass.RegisterUser(login, password, confirmPasword))
+                    (RegistrationClass user, bool result) = RegistrationClass.RegisterUser(login, password, confirmPasword);
+                    if (result)
                     {
-                        Console.WriteLine($"\nПользователь успешно введен: \n{RegistrationClass.GetData()}");
+                        Console.WriteLine($"\nПользователь успешно введен: \n{user.GetData()}");
+                        users.Add(user);
                         break;
                     }
                 }

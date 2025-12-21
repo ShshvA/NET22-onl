@@ -2,16 +2,20 @@ namespace ExceptionsPractice;
 
 public class RegistrationClass
 {
-    public static string Login { get; private set; }
-    public static string Password { get; private set; }
+    public string Login { get; private set; }
+    public string Password { get; private set; }
+    public int Id { get; private set; }
+
+    private static int _userCount = 0;
 
     public RegistrationClass(string login, string password)
     {
         Login = login;
         Password = password;
+        Id = ++_userCount;
     }
 
-    public static bool RegisterUser(string login, string password, string confirmPassword)
+    public static (RegistrationClass, bool) RegisterUser(string login, string password, string confirmPassword)
     {
         if (login.Length >= 20)
         {
@@ -49,13 +53,13 @@ public class RegistrationClass
                                         "Пароли должны совпадать.");
         }
 
-        new RegistrationClass(login, password);
-        return true;
+        return (new RegistrationClass(login, password), true);
     }
 
-    public static string GetData()
+    public string GetData()
     {
-        return $"\tЛогин: {Login}\n" +
+        return $"\tID: {Id}\n" +
+            $"\tЛогин: {Login}\n" +
             $"\tПароль: {Password}";
     }
 

@@ -11,4 +11,5 @@
 Получить текущую погоду по вашему городу используя [OpenWeather](https://openweathermap.org/api).
 
 #### **Результат**
+Использовал [WeatherApi](https://www.weatherapi.com/).
 ![Результат](result.png)

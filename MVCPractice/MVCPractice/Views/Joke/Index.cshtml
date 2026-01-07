@@ -1,0 +1,17 @@
+﻿@model MVCPractice.Models.RandomJokeModel
+@{
+    ViewData["Title"] = "Random Joke";
+}
+
+<div class="container">
+    <div class="mb-4">
+        <form method="post" asp-action="GenerateJoke">
+            <button type="submit" class="btn btn-outline-primary">
+                Generate Joke
+            </button>
+        </form>
+    </div>
+    <div class="border border-primary p-2 rounded">
+        @Model.JokeText
+    </div>   
+</div>

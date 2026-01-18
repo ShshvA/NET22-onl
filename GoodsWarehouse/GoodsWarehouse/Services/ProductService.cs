@@ -3,11 +3,34 @@ using GoodsWarehouse.Interfaces;
 using GoodsWarehouse.Models;
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using System.Globalization;
+using System.Text.Json;
 
 namespace GoodsWarehouse.Services
 {
     public class ProductService : IProductService
     {
+        public ProductService()
+        {
+            var fileName = "productList.json";
+
+            try
+            {
+                if (File.Exists(fileName))
+                {
+                    string jsonString = File.ReadAllText(fileName);
+                    _productsList = JsonSerializer.Deserialize<List<Product>>(jsonString) ?? new List<Product>();
+                }
+                else
+                {
+                    _productsList = new List<Product>();
+                }
+            }
+            catch (Exception)
+            {
+                _productsList = new List<Product>();
+            }
+        }
+
         public List<Product> GetProducts()
         {
             return _productsList;
@@ -22,6 +45,7 @@ namespace GoodsWarehouse.Services
         {
             Product newProduct = new Product(product.Name, product.Type, product.Price.Replace(',', '.'), product.NumberOfProducts);
             _productsList.Add(newProduct);
+            SaveProductList(_productsList);
         }
 
         public void UpdateProduct(ProductAdditingDTO product)
@@ -31,11 +55,13 @@ namespace GoodsWarehouse.Services
             oldProduct.Type = product.Type;
             oldProduct.Price = product.Price.Replace(',', '.');
             oldProduct.NumberOfProducts = product.NumberOfProducts;
+            SaveProductList(_productsList);
         }
 
         public void DeleteProduct(int id)
         {
             _productsList.Remove(_productsList.First(x => x.Id == id));
+            SaveProductList(_productsList);
         }
 
         public SortedDictionary<int, string> GetReport()
@@ -57,6 +83,23 @@ namespace GoodsWarehouse.Services
             return report;
         }
 
-        private List<Product> _productsList = new List<Product>();
+        public void SaveProductList(List<Product> productsList)
+        {
+            try
+            {
+                var fileName = $"productList.json";
+                File.WriteAllText(fileName, JsonSerializer.Serialize(productsList, new JsonSerializerOptions
+                {
+                    WriteIndented = true
+                }));
+            }
+            catch (Exception)
+            {
+
+                return;
+            }
+        }
+
+        private List<Product> _productsList;
     }
 }

@@ -16,5 +16,7 @@ namespace GoodsWarehouse.Interfaces
         public void DeleteProduct(int id);
 
         public SortedDictionary<int, string> GetReport();
+
+        public void SaveProductList(List<Product> productsList);
     }
 }

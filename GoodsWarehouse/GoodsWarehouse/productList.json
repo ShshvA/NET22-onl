@@ -1,0 +1,30 @@
+[
+  {
+    "Id": 1,
+    "Name": "\u042F\u0431\u043B\u043E\u043A\u043E",
+    "Type": 1,
+    "Price": "1.2",
+    "NumberOfProducts": 12345
+  },
+  {
+    "Id": 4,
+    "Name": "\u041C\u0430\u043B\u0438\u043D\u0430",
+    "Type": 3,
+    "Price": "7.5",
+    "NumberOfProducts": 432
+  },
+  {
+    "Id": 10,
+    "Name": "\u041A\u0430\u0440\u0442\u043E\u0444\u0435\u043B\u044C",
+    "Type": 2,
+    "Price": "1.2",
+    "NumberOfProducts": 123
+  },
+  {
+    "Id": 19,
+    "Name": "\u0411\u0430\u043D\u0430\u043D\u044B",
+    "Type": 1,
+    "Price": "3.4",
+    "NumberOfProducts": 421
+  }
+]

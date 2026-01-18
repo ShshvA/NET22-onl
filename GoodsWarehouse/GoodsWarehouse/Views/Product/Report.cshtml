@@ -1,0 +1,48 @@
+﻿@model GoodsWarehouse.VM.ProductsVM
+
+<h3>Отчет</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Тип продукта</th>
+            <th scope="col">Сумма, $</th>
+            <th scope="col">Итог, $</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var (key, value) in Model.Report)
+        {
+            if (key == -1)
+            {
+                continue;
+            }
+
+            var type = (ProductType)key;
+            <tr>
+                @switch (type)
+                {
+                    case ProductType.Fruits:
+                        <td>Фрукты</td>
+                        break;
+                    case ProductType.Vegetables:
+                        <td>Овощи</td>
+                        break;
+                    case ProductType.Berries:
+                        <td>Ягоды</td>
+                        break;
+                    default:
+                        <td>None</td>
+                        break;
+                }
+
+                <td>@value</td>
+            </tr>
+        }
+        <tr>
+            <td>Итог</td>
+            <td></td>
+            <td>@Model.Report[-1]</td>
+        </tr>
+    </tbody>
+</table>

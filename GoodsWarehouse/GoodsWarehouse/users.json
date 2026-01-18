@@ -1,0 +1,14 @@
+[
+  {
+    "Username": "Artem",
+    "Email": "artem@gmail.com",
+    "Password": "qwe123",
+    "ConfirmPassword": null
+  },
+  {
+    "Username": "ArtemTest",
+    "Email": "artem_test@email.com",
+    "Password": "qwe123",
+    "ConfirmPassword": null
+  }
+]

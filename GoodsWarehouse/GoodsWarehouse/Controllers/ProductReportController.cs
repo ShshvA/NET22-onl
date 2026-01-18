@@ -1,4 +1,5 @@
-﻿using GoodsWarehouse.Interfaces;
+﻿using GoodsWarehouse.Filters;
+using GoodsWarehouse.Interfaces;
 using GoodsWarehouse.Models;
 using GoodsWarehouse.VM;
 using Microsoft.AspNetCore.Mvc;
@@ -6,6 +7,7 @@ using System.Diagnostics;
 
 namespace GoodsWarehouse.Controllers
 {
+    [ServiceFilter(typeof(AuthenticationFilter))]
     public class ProductReportController : Controller
     {
 

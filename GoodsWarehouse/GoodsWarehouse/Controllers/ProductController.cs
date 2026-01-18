@@ -1,12 +1,12 @@
 ﻿using GoodsWarehouse.DTO;
+using GoodsWarehouse.Filters;
 using GoodsWarehouse.Interfaces;
-using GoodsWarehouse.Models;
 using GoodsWarehouse.VM;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace GoodsWarehouse.Controllers
 {
+    [ServiceFilter(typeof(AuthenticationFilter))]
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
@@ -16,6 +16,7 @@ namespace GoodsWarehouse.Controllers
             _productService = productService;
         }
 
+        
         public IActionResult Index()
         {
             ProductsVM productsVM = new ProductsVM()

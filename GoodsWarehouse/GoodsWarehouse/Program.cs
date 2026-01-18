@@ -1,4 +1,6 @@
+using GoodsWarehouse.Filters;
 using GoodsWarehouse.Interfaces;
+using GoodsWarehouse.Midlewares;
 using GoodsWarehouse.Services;
 
 namespace GoodsWarehouse
@@ -10,10 +12,26 @@ namespace GoodsWarehouse
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
-            builder.Services.AddSingleton<IProductService, ProductService>();
+            builder.Services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add<RequestTimeFilter>();
+            });
+            builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<AuthenticationFilter>();
+
+            builder.Services.AddHttpContextAccessor();
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
 
             var app = builder.Build();
+
+            app.UseExeptionsLogger();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -24,7 +42,8 @@ namespace GoodsWarehouse
             }
 
             app.UseHttpsRedirection();
-            app.UseRouting();
+            app.UseSession();
+            app.UseRouting();            
 
             app.UseAuthorization();
 

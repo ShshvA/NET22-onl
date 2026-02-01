@@ -1,16 +1,19 @@
-### Пушкин А.С.
-
-- Зимнее утро
-
-### Лермонтов М.Ю.
-
-- Бородино
+# TMS Lesson 21 - Homework
 
 ---
 
-### Команды **Git**
+### Основы ORM – Entity framework
 
-1. git clone [url] - команда для колонирования удаленного репозитория в локальную директорию.
-2. git remote add origin [url] - команда привязывает удаленный репозиторий к локальному, при этом дает имя origin удаленному репозиторию.
-3. git checkout -b [branch-name] - команда позволяет создать новую ветку с именем [branch-name] и сразу переключается на нее.
+---
 
+Создать простое ASP.NET приложение, установить Microsoft Entity Framework и создать базу данных с помощью Code-First подхода.
+
+![Code-First БД](dbCodeFirst.png)
+
+![Миграции](createMigration.png)
+
+#### Задание повышенной сложности:  
+Создать приложение, с использованием DataBase-First подхода
+
+Команда для создания с использованием DataBase-First подхода:
+    `dotnet ef dbcontext scaffold "Data Source=(localdb)\MSSQLLocalDB;Database=DatabaseCodeFirst;Persist Security Info=True;User ID=artem;Password=artem1234;Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Application Name=\"SQL Server Management Studio\";Command Timeout=0" Microsoft.EntityFrameworkCore.SqlServer -p DatabaseAccessDBFirst -c PlayerTeamDBFirstDBContext --context-dir . -o Models`

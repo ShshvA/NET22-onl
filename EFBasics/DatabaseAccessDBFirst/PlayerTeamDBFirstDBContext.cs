@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DatabaseAccessDBFirst;
 
-public class PlayerTeamDBFirstDBContext : DbContext
+public partial class PlayerTeamDBFirstDBContext : DbContext
 {
     public PlayerTeamDBFirstDBContext()
     {
@@ -47,6 +47,6 @@ public class PlayerTeamDBFirstDBContext : DbContext
         OnModelCreatingPartial(modelBuilder);
     }
 
-    public void OnModelCreatingPartial(ModelBuilder modelBuilder)
-    {}
+    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+    
 }

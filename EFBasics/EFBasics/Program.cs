@@ -1,6 +1,5 @@
 using DatabaseAccessCodeFirst;
 using DatabaseAccessDBFirst;
-using Microsoft.EntityFrameworkCore;
 
 namespace EFBasics
 {

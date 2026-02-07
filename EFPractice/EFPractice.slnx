@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="EFPractice.DatabaseAccess/EFPractice.DatabaseAccess.csproj" />
+  <Project Path="EFPractice/EFPractice.csproj" />
+</Solution>

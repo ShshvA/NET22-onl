@@ -1,5 +1,0 @@
-<Solution>
-  <Project Path="DatabaseAccessCodeFirst/DatabaseAccessCodeFirst.csproj" Id="bafa43ef-1040-4f15-9962-8a02c04a008f" />
-  <Project Path="DatabaseAccessDBFirst/DatabaseAccessDBFirst.csproj" Id="d46b52f8-606e-4b87-8207-95d450ad780d" />
-  <Project Path="EFBasics/EFBasics.csproj" />
-</Solution>

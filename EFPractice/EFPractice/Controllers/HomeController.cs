@@ -21,7 +21,17 @@ namespace EFPractice.Controllers
 
         public IActionResult Privacy()
         {
-            _bookLibraryService.InitData();
+            //_bookLibraryService.InitData();
+            var booksAfterYear = _bookLibraryService.GetBooksAfterYear(2010);
+            var authorsNoBio = _bookLibraryService.GetAuthorsNoBio();
+            var membersOverdueBooks = _bookLibraryService.GetMembersOverdueBooks();
+            var categoryStat = _bookLibraryService.GetCategoriesStat();
+            var publishersWithoutBooks = _bookLibraryService.GetPublishersWithoutBooks();
+            var booksWithMoreOneCat = _bookLibraryService.GetBooksWithMoreOneCat();
+            var authorsPopularBooks = _bookLibraryService.GetAuthorsPopularBooks();
+            var membersByCategory = _bookLibraryService.GetMembersByCategory("Бестселлер");
+            var booksWithInfo = _bookLibraryService.GetBooksWithInfo();
+            var publishersWithBooks = _bookLibraryService.GetPublishersWithBooks();
 
             return View();
         }

@@ -5,3 +5,5 @@
 */obj/
 **/bin/**
 **/obj/**
+/EFPractice/EFPractice/appsettings.json
+/EFPractice/EFPractice/appsettings.Development.json
